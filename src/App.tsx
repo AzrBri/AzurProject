@@ -13,16 +13,16 @@ function App() {
       <img className="ShoppingCart" style={{ width: 30, height: 30, left: 1331, top: 25, position: 'absolute' }} src={process.env.PUBLIC_URL + '/img/Shopping Cart.png'} alt="Shopping Cart" />
       <div className="Group9" style={{ width: 120, height: 39, left: 887, top: 21, position: 'absolute' }}>
         <div className="Rectangle23" style={{ width: 120, height: 39, left: 0, top: 0, position: 'absolute', background: '#333333', borderRadius: 10 }} />
-        <div className="Home" style={{ width: 73, height: 25, left: 23, top: 7, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 24, fontFamily: 'Exo', fontWeight: '500', wordWrap: 'break-word' }}>Home</div>
+        <div className="Home btn" style={{ width: 73, height: 25, left: 23, top: 7, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 24, fontFamily: 'Exo', fontWeight: '500', wordWrap: 'break-word' }}>Home</div>
       </div>
       <div className="Group10" style={{ width: 165, height: 39, left: 1008, top: 21, position: 'absolute' }}>
         <div className="Rectangle23" style={{ width: 165, height: 39, left: 0, top: 0, position: 'absolute', background: '#333333', borderRadius: 10 }} />
-        <div className="Home" style={{ width: 100.38, height: 25, left: 31.62, top: 7, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 24, fontFamily: 'Exo', fontWeight: '500', wordWrap: 'break-word' }}>Products</div>
+        <div className="Home btn" style={{ width: 100.38, height: 25, left: 31.62, top: 7, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 24, fontFamily: 'Exo', fontWeight: '500', wordWrap: 'break-word' }}>Products</div>
       </div>
       <div className="Component2" style={{ width: 132, height: 129, left: 1179, top: 24, position: 'absolute' }}>
         <div className="Rectangle24" style={{ width: 132, height: 30, left: 0, top: 0, position: 'absolute', background: '#333333' }} />
         <div className="Group11" style={{ width: 126, height: 30, left: 2, top: 0, position: 'absolute' }}>
-          <div className="Profile" style={{ width: 83, height: 25, left: 27, top: 3, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 24, fontFamily: 'Exo', fontWeight: '500', wordWrap: 'break-word' }}>Profile</div>
+          <div className="Profile btn" style={{ width: 83, height: 25, left: 27, top: 3, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 24, fontFamily: 'Exo', fontWeight: '500', wordWrap: 'break-word' }}>Profile</div>
           <img className="User" style={{ width: 30, height: 30, left: 0, top: 0, position: 'absolute' }} src={process.env.PUBLIC_URL + '/img/User.png'} alt="User" />
           <img className="ExpandArrow" style={{ width: 20, height: 20, left: 106, top: 5, position: 'absolute' }} src={process.env.PUBLIC_URL + '/img/Expand Arrow.png'} alt="Expand Arrow" />
         </div>
