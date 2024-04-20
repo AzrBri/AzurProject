@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Sidebar from './Sidebar';
 
 interface User {
   id: number; // Changed User_id to id
@@ -39,6 +40,7 @@ const AccountPanel: React.FC = () => {
 
  return (
   <>
+   <Sidebar />
     <div className="card text-bg-dark container mt-5">
       <div className="card-header fw-bold fs-4">Accounts Panel</div>
       <div className="card-body">
