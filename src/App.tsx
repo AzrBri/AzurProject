@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route }
 import Home from "./components/HomePage";
 import Login from "./components/LoginPage";
 import Reg from "./components/RegPage";
+import ProdList from "./components/ProductPage";
 import Account from "./Admin/AccPanel";
 import Product from "./Admin/ProdPanel";
 function App() {
@@ -22,6 +23,8 @@ function App() {
                     element={<Account />} />
                 <Route path="/prodPanel"
                     element={<Product />} />
+                <Route path="/prodPage"
+                    element={<ProdList />} />
             </Routes>
         </Router>
     );

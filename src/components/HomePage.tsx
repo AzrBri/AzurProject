@@ -1,41 +1,16 @@
 import React from "react";
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import { Carousel, Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-
+import NavbarPanel from './NavbarPanel';
 
 function HomePage() {
-  const navigate = useNavigate();
- 
-    const goToSecondsComp = () => {
- 
-        // This will navigate to second component
-        navigate('/login');
-    };
-    const goToFirstComp = () => {
- 
-        // This will navigate to first component
-        navigate('/reg');
-    };
+  
   return (
     <div style={{ width: 1440, height: 'auto', position: 'relative', background: '#333333' }}>
-                      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top" style={{ width: 1440, height: 153 }}>
-          <Container fluid>
-            <Navbar.Brand>AZUR</Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="ms-auto">
-                <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <Nav.Link>Products</Nav.Link>
-                <NavDropdown title="Profile" id="collasible-nav-dropdown">
-                  <NavDropdown.Item onClick={goToSecondsComp}>Login</NavDropdown.Item>
-                  <NavDropdown.Item onClick={goToFirstComp}>Registration</NavDropdown.Item>
-                </NavDropdown>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar> 
+    <NavbarPanel />
   <img style={{width: 1440, height: 608.45, left: 0, top: 80, position: 'absolute', borderTopLeftRadius: 20, borderTopRightRadius: 20}} src={process.env.PUBLIC_URL + '/img/20240305_134357_0000 1.png'} />
   <div style={{width: 287, height: 64, left: 576, top: 788, position: 'absolute'}}>
     <div style={{width: 257, height: 10, left: 15, top: 0, position: 'absolute', background: '#007FFF', borderRadius: 20}} />

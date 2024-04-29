@@ -2,11 +2,8 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-  
-interface User {
-  email: string;
-  password: string;
-}
+import NavbarPanel from './NavbarPanel';
+import { AccPanel, User } from '../Admin/AccPanel';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -14,8 +11,17 @@ const LoginPage: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
   // Array of registered users (mock data)
   const registeredUsers: User[] = [
-    { email: 'brnmondia@gmail.com', password: 'BrianMondia_27' },
-    { email: 'user2@example.com', password: 'password2' },
+    {
+    id: 1, // Changed User_id to id
+  type: 'User',// Changed Type to type
+  fName: 'Brian', // Changed FName to fName
+  lName: 'Mondia', // Changed LName to lName
+  gender: 'Male', // Changed Gender to gender
+  birthdate: '', // Changed Birthdate to birthdate
+  age: 20, // Changed Age to age
+  phoneNumber: '', // Changed Phone_number to phoneNumber
+  emailAddress: 'brnmondia@gmail.com',
+  password: 'BrianMondia_27' }
     // Add more users as needed
   ];
 
@@ -26,7 +32,7 @@ const LoginPage: React.FC = () => {
       setErrorMessage('Please enter both email and password.');
     } else {
       // Check if the user is registered
-      const foundUser = registeredUsers.find(user => user.email === email && user.password === password);
+      const foundUser = registeredUsers.find(user => user.emailAddress === email && user.password === password);
       if (foundUser) {
         // Successful login
         alert('Successfully Logged In!');
@@ -38,6 +44,8 @@ const LoginPage: React.FC = () => {
   };
 
   return (
+    <>
+  <NavbarPanel />
     <div className="container mt-5 bg-light p-5 rounded-5">
       <div className="row justify-content-center">
         <div className="col-lg-4 col-md-6">
@@ -89,6 +97,7 @@ const LoginPage: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

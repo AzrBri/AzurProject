@@ -3,7 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from './Sidebar';
 
-interface User {
+export interface User {
   id: number; // Changed User_id to id
   type: string; // Changed Type to type
   fName: string; // Changed FName to fName
@@ -16,7 +16,7 @@ interface User {
   password: string;
 }
 
-const AccountPanel: React.FC = () => {
+export const AccPanel: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [newUser, setNewUser] = useState<Partial<User>>({});
 
@@ -172,4 +172,4 @@ const AccountPanel: React.FC = () => {
 );
 }
 
-export default AccountPanel;
+export default AccPanel;

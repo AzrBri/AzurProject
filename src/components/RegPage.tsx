@@ -2,6 +2,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import NavbarPanel from './NavbarPanel';
 
 interface User {
   firstName: string;
@@ -50,7 +51,10 @@ const RegPage: React.FC = () => {
   };
 
   return (
+    <>
+            <NavbarPanel />
     <div className="container mt-5 bg-light p-5 rounded-5">
+
       <h2>Register</h2>
       <form id="form_reg" name="form_reg" onSubmit={handleSubmit}>
         <div className="row mb-3">
@@ -113,6 +117,7 @@ const RegPage: React.FC = () => {
       </form>
       <p className="mt-3">Already have an account? <Link to="/login">Log in here</Link></p>
     </div>
+    </>
   );
 };
 
