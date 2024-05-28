@@ -3,6 +3,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductData, { ProductArray } from '../Admin/Product';
 import NavbarPanel from './NavbarPanel';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import Footer from './Footer';
 
 interface Brand {
   Brand_id: number;
@@ -90,14 +92,17 @@ const ProductPage: React.FC = () => {
         <div className="row mt-4">
           {getFilteredProducts().map((product: ProductArray) => (
             <div key={product.Product_id} className="col-md-6 col-lg-3 text-light">
+              <Link to={`/prodDetails/${product.Product_id}`} style={{textDecoration: 'none'}}>
               <div className="product-card" style={{ height: '400px', backgroundColor: 'transparent' }}>
-                <img src={`${product.Image1}`} alt="" />
+                <img className="img-fluid" src={process.env.PUBLIC_URL + `/img/${product.Image1}`} alt="" />
                 <h5 className="text-center fw-bold">{product.Product_name}</h5>
                 <p className="text-center text-light">{product.CPU}</p>
               </div>
+              </Link>
             </div>
           ))}
         </div>
+        
 
         {/* Pagination */}
         <div className="row mt-4">
@@ -136,6 +141,7 @@ const ProductPage: React.FC = () => {
           margin-bottom: 15px;
         }
       `}</style>
+      <Footer />
     </>
   );
 };

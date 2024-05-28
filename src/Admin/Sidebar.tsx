@@ -19,9 +19,7 @@ function Sidebar() {
       <ul className="mt-5 ps-4 text-center fw-bold text-primary">
         <li><i className="fas fa-user"></i><Link to="/accPanel" className="text-light">Accounts</Link></li>
         <li><i className="fas fa-box"></i><Link to="/prodPanel" className="text-light">Products</Link></li>
-        <li><i className="fas fa-chart-line"></i><a href="salesInventory.php" className="text-light">Sales Inventory</a></li>
-        <li><i className="fas fa-file-alt"></i><a href="orderSummary.php" className="text-light">Order Summary</a></li>
-        <li><i className="bi bi-box-arrow-right"></i><a href="../index.php" className="text-danger">LOG-OUT</a></li>
+        <li><i className="bi bi-box-arrow-right"></i><Link to="/home" className="text-light"><a className="text-danger">LOG-OUT</a></Link></li>
       </ul>
     </div>
     <nav className="navbar bg-dark navbar-expand-lg">

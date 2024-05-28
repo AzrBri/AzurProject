@@ -15,6 +15,7 @@ export const ProdPanel: React.FC = () => {
     Product_id: 0, // Set a default value for Product_id
   });
   const [imagePreviews, setImagePreviews] = useState<string[]>(['', '', '']);
+  const [confirmationMessage, setConfirmationMessage] = useState<string>('');
 
   // Function to handle input change for adding new product
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -30,38 +31,41 @@ export const ProdPanel: React.FC = () => {
         const previews = [...imagePreviews];
         previews[index] = reader.result as string;
         setImagePreviews(previews);
+        setNewProduct((prevProduct) => ({ ...prevProduct, [`Image${index + 1}`]: reader.result as string }));
       };
       reader.readAsDataURL(e.target.files[0]);
     }
   };
 
-const handleAddProduct = () => {
-  const filteredEntries = Object.entries(newProduct).filter(
-    ([_, value]) => value !== undefined
-  );
+  const handleAddProduct = () => {
+    const filteredEntries = Object.entries(newProduct).filter(
+      ([_, value]) => value !== undefined
+    );
 
-  const product: ProductArray = {
-    ...Object.fromEntries(filteredEntries),
-    Product_id: products.length + 1,
-    Product_name: '', // Default value for Product_name
-    Image1: '', // Default value for Image1
-    Image2: '', // Default value for Image2
-    Image3: '', 
-    Description: '',
-    Brand: '', // Default value for Brand
-    GPU: '', // Default value for GPU
-    CPU: '', // Default value for CPU
-    RAM: '', // Default value for RAM
-    Storage: '', // Default value for Storage
-    Stock: 0, // Default value for Stock
-    Price: 0, // Default value for Price
+    const product: ProductArray = {
+      ...Object.fromEntries(filteredEntries),
+      Product_id: products.length + 1,
+      Product_name: newProduct.Product_name || '', // Default value for Product_name
+      Image1: newProduct.Image1 || '', // Default value for Image1
+      Image2: newProduct.Image2 || '', // Default value for Image2
+      Image3: newProduct.Image3 || '', // Default value for Image3
+      Description: newProduct.Description || '',
+      Brand: newProduct.Brand || '', // Default value for Brand
+      GPU: newProduct.GPU || '', // Default value for GPU
+      CPU: newProduct.CPU || '', // Default value for CPU
+      RAM: newProduct.RAM || '', // Default value for RAM
+      Storage: newProduct.Storage || '', // Default value for Storage
+      Stock: newProduct.Stock || 0, // Default value for Stock
+      Price: newProduct.Price || 0, // Default value for Price
+    };
+
+    const updatedProducts = [...products, product];
+    setProducts(updatedProducts);
+    setNewProduct({ Product_id: 0 }); // Reset newProduct
+    setImagePreviews(['', '', '']);
+    setConfirmationMessage('Product added successfully!');
   };
 
-  const updatedProducts = [...products, product];
-  setProducts(updatedProducts);
-  setNewProduct({ Product_id: 0 }); // Reset newProduct
-  setImagePreviews(['', '', '']);
-};
   return (
     <>
       <Sidebar />
@@ -81,6 +85,11 @@ const handleAddProduct = () => {
               Add Product
             </button>
           </div>
+          {confirmationMessage && (
+            <div className="alert alert-success mt-3" role="alert">
+              {confirmationMessage}
+            </div>
+          )}
           <div className="table-responsive">
             <table className="table table-dark table-striped table-hover mt-4">
               <thead>
@@ -136,7 +145,7 @@ const handleAddProduct = () => {
               <h5 className="modal-title" id="addModalLabel">Add Product</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body text-dark">
               <form>
                 <div className="mb-3">
                   <label htmlFor="productName" className="form-label">Product Name</label>
@@ -146,21 +155,21 @@ const handleAddProduct = () => {
                   <label htmlFor="image1" className="form-label">Image 1</label>
                   <input type="file" className="form-control" id="image1" onChange={(e) => handleFileChange(e, 0)} accept="image/*" />
                   <div className="preview-container mt-2">
-                    {imagePreviews[0] && <img src={imagePreviews[0]} alt="Preview 1" className="img-preview" />}
+                    {imagePreviews[0] && <img src={imagePreviews[0]} alt="Preview 1" className="img-preview img-fluid" />}
                   </div>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="image2" className="form-label">Image 2</label>
                   <input type="file" className="form-control" id="image2" onChange={(e) => handleFileChange(e, 1)} accept="image/*" />
                   <div className="preview-container mt-2">
-                    {imagePreviews[1] && <img src={imagePreviews[1]} alt="Preview 2" className="img-preview" />}
+                    {imagePreviews[1] && <img src={imagePreviews[1]} alt="Preview 2" className="img-preview img-fluid" />}
                   </div>
                 </div>
                 <div className="mb-3">
                   <label htmlFor="image3" className="form-label">Image 3</label>
                   <input type="file" className="form-control" id="image3" onChange={(e) => handleFileChange(e, 2)} accept="image/*" />
                   <div className="preview-container mt-2">
-                    {imagePreviews[2] && <img src={imagePreviews[2]} alt="Preview 3" className="img-preview" />}
+                    {imagePreviews[2] && <img src={imagePreviews[2]} alt="Preview 3" className="img-preview img-fluid" />}
                   </div>
                 </div>
                 <div className="mb-3">
@@ -169,43 +178,43 @@ const handleAddProduct = () => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="brand" className="form-label">Brand</label>
-                  <input type="text" className="form-control" id="brand" name="Brand" onChange={handleInputChange} />
-</div>
-<div className="mb-3">
-<label htmlFor="gpu" className="form-label">GPU</label>
-<input type="text" className="form-control" id="gpu" name="GPU" onChange={handleInputChange} />
-</div>
-<div className="mb-3">
-<label htmlFor="cpu" className="form-label">CPU</label>
-<input type="text" className="form-control" id="cpu" name="CPU" onChange={handleInputChange} />
-</div>
-<div className="mb-3">
-<label htmlFor="ram" className="form-label">RAM</label>
-<input type="text" className="form-control" id="ram" name="RAM" onChange={handleInputChange} />
-</div>
-<div className="mb-3">
-<label htmlFor="storage" className="form-label">Storage</label>
-<input type="text" className="form-control" id="storage" name="Storage" onChange={handleInputChange} />
-</div>
-<div className="mb-3">
-<label htmlFor="stock" className="form-label">Stock</label>
-<input type="number" className="form-control" id="stock" name="Stock" onChange={handleInputChange} />
-</div>
-<div className="mb-3">
-<label htmlFor="price" className="form-label">Price</label>
-<input type="number" className="form-control" id="price" name="Price" onChange={handleInputChange} />
-</div>
-</form>
-</div>
-<div className="modal-footer">
-<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-<button type="button" className="btn btn-primary" onClick={handleAddProduct}>Save changes</button>
-</div>
-</div>
-</div>
-</div>
-</>
-);
+<input type="text" className="form-control" id="brand" name="Brand" onChange={handleInputChange} />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="gpu" className="form-label">GPU</label>
+                  <input type="text" className="form-control" id="gpu" name="GPU" onChange={handleInputChange} />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="cpu" className="form-label">CPU</label>
+                  <input type="text" className="form-control" id="cpu" name="CPU" onChange={handleInputChange} />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="ram" className="form-label">RAM</label>
+                  <input type="text" className="form-control" id="ram" name="RAM" onChange={handleInputChange} />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="storage" className="form-label">Storage</label>
+                  <input type="text" className="form-control" id="storage" name="Storage" onChange={handleInputChange} />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="stock" className="form-label">Stock</label>
+                  <input type="number" className="form-control" id="stock" name="Stock" onChange={handleInputChange} />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="price" className="form-label">Price</label>
+                  <input type="number" className="form-control" id="price" name="Price" onChange={handleInputChange} />
+                </div>
+              </form>
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-primary" onClick={handleAddProduct}>Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default ProdPanel;

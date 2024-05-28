@@ -112,7 +112,7 @@ export const AccPanel: React.FC = () => {
             <h5 className="modal-title" id="addModalLabel">Add Account</h5>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div className="modal-body">
+          <div className="modal-body text-dark">
             <form>
               <div className="mb-3">
                 <label htmlFor="firstName" className="form-label">First Name</label>
